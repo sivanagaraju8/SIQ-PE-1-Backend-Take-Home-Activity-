@@ -26,7 +26,7 @@ def create_parking_lot(command):
     global slots_available
     number_of_slots_created = int(command[1])
     slots_available = [x for x in range(1, number_of_slots_created + 1, 1)]
-    write_line(f"Created parking of {number_of_slots_created} slots".strip())
+    write_line(f"Created parking of {number_of_slots_created} slots")
 
 
 def park(command):
@@ -37,10 +37,11 @@ def park(command):
         parking_lots_list.append(lot)
         slots_available.remove(slot_number)
         write_line(
-            "Car with vehicle registration number {} has been parked at slot number {}".format(command[1],
-                                                                                               lot.slot_number))
+            "Car with vehicle registration number {} has been parked at slot number {}"
+            .format(command[1], lot.slot_number))
     else:
-        write_line("No more parking spaces are available to allocate a parking lot.")
+        write_line(
+            "No more parking spaces are available to allocate a parking lot.")
 
 
 def slot_numbers_for_driver_of_age(command):
@@ -71,7 +72,9 @@ def add_slot_to_list(slot_number):
     if index == len(slots_available):
         slots_available = slots_available[:index] + [slot_number]
     else:
-        slots_available = slots_available[:index] + [slot_number] + slots_available[index:]
+        slots_available = slots_available[:index] + [
+            slot_number
+        ] + slots_available[index:]
 
 
 def leave(command):
@@ -79,8 +82,9 @@ def leave(command):
         if lot.slot_number == int(command[1]):
             write_line(
                 "Slot number {} vacated, the car with vehicle registration number {} left the space, the driver of "
-                "the car was of age {}".format(
-                    lot.slot_number, lot.vehicle_number, lot.driver_age))
+                "the car was of age {}".format(lot.slot_number,
+                                               lot.vehicle_number,
+                                               lot.driver_age))
             add_slot_to_list(lot.slot_number)
             parking_lots_list.remove(lot)
             break
